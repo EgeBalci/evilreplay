@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "outDir": "./cjs",
-    "rootDir": "src"
+    "rootDir": "src",
+    "typeRoots": []
   },
   "exclude": ["**/*.test.ts"]
 }

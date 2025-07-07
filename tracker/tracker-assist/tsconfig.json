@@ -9,7 +9,8 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "outDir": "./lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "typeRoots": []
   },
   "exclude": ["**/*.test.ts"]
 }

@@ -50,7 +50,7 @@
     "prepublishOnly": "bun run test && bun run build"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
+    "@babel/core": "^7.28.0",
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.3",
@@ -74,11 +74,14 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.28.0",
     "@medv/finder": "^4.0.2",
     "@openreplay/network-proxy": "^1.1.3",
+    "@openreplay/tracker-assist": "../tracker-assist",
     "error-stack-parser": "^2.1.4",
     "error-stack-parser-es": "^0.1.5",
     "fflate": "^0.8.2",
+    "rollup-plugin-polyfill-node": "^0.13.0",
     "web-vitals": "^4.2.4"
   },
   "engines": {

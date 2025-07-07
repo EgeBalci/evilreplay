@@ -5,6 +5,8 @@ import replace from '@rollup/plugin-replace'
 import { rollup } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import { createRequire } from 'module'
+import nodePolyfills from 'rollup-plugin-polyfill-node';
+import { babel } from '@rollup/plugin-babel';
 const require = createRequire(import.meta.url)
 const packageConfig = require('./package.json')
 
@@ -46,7 +48,36 @@ export default async () => {
     plugins: [...commonPlugins, commonjs()],
   }))
 
-  return [...esmBuilds, ...cjsBuilds]
+
+  const iifeBuild = {
+    input: 'src/evilreplay.js',
+    context: 'window',
+    output: {
+      dir: 'dist/iife',
+      format: 'iife',
+      sourcemap: false,
+    },
+    plugins: [replace({
+      preventAssignment: true,
+        values: {
+          TRACKER_VERSION: packageConfig.version,
+          'global.WEBWORKER_BODY': JSON.stringify(webworkerContent),
+        },
+      }),
+      babel({
+        babelHelpers: 'bundled',
+        presets: [
+          '@babel/preset-env',
+        ],
+        exclude: '/node_modules/**' //\/(error-stack-parser|stackframe)/
+      }), resolve({ browser: true }), 
+      commonjs({
+        include: /node_modules/, //\/(error-stack-parser|stackframe)/
+      }), nodePolyfills()
+    ],
+  }
+
+  return [...esmBuilds, ...cjsBuilds, iifeBuild]
 }
 
 async function buildWebWorker() {
@@ -58,7 +89,7 @@ async function buildWebWorker() {
       typescript({
         tsconfig: 'src/webworker/tsconfig.json',
       }),
-      terser(),
+      // terser(),
     ],
   })
 
