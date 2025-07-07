@@ -45,6 +45,7 @@ export default class TopObserver extends Observer {
         captureIFrames: true,
         disableSprites: false,
         inlineCss: 0,
+        inlineRemoteCss: false
       },
       params.options,
     )
