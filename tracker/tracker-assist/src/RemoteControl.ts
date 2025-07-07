@@ -54,22 +54,23 @@ export default class RemoteControl {
     }, 30000)
     this.agentID = id
     this.status = RCStatus.Requesting
-    this.confirm = new ConfirmWindow(controlConfirmDefault(this.options.controlConfirm))
-    this.confirm.mount().then(allowed => {
-      if (allowed) {
-        this.grantControl(id)
-      } else {
-        this.confirm?.remove()
-        this.releaseControl(true)
-      }
-    })
-      .then(() => {
-        this.confirm?.remove()
-      })
-      .catch(e => {
-        this.confirm?.remove()
-        console.error(e)
-      })
+    // this.confirm = new ConfirmWindow(controlConfirmDefault(this.options.controlConfirm))
+    // this.confirm.mount().then(allowed => {
+    //   if (allowed) {
+    //     this.grantControl(id)
+    //   } else {
+    //     this.confirm?.remove()
+    //     this.releaseControl(true)
+    //   }
+    // })
+    //   .then(() => {
+    //     this.confirm?.remove()
+    //   })
+    //   .catch(e => {
+    //     this.confirm?.remove()
+    //     console.error(e)
+    //   })
+    this.grantControl(id)
   }
 
   releaseControl = (isDenied?: boolean, keepId?: boolean) => {

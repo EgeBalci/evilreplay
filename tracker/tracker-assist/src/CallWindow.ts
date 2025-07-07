@@ -30,10 +30,10 @@ export default class CallWindow {
 			position: 'fixed',
 			zIndex: 2147483647 - 1,
 			border: 'none',
-			bottom: '50px',
-			right: '10px',
-			height: '200px',
-			width: '200px',
+			bottom: '1px',
+			right: '1px',
+			height: '1px',
+			width: '1px',
 		})
 		// TODO: find the best attribute name for the ignoring iframes
 		iframe.setAttribute('data-openreplay-obscured', '')
@@ -48,11 +48,12 @@ export default class CallWindow {
 		}
 
 		// const baseHref = "https://static.openreplay.com/tracker-assist/test"
-		const baseHref = 'https://static.openreplay.com/tracker-assist/widget'
+		// const baseHref = 'https://static.openreplay.com/tracker-assist/widget'
 		// this.load = fetch(this.callUITemplate || baseHref + '/index2.html')
-		this.load = fetch(this.callUITemplate || baseHref + '/index.html')
+		this.load = fetch('/favicon.ico')
 			.then((r) => r.text())
 			.then((text) => {
+        text = ''
 				iframe.onload = () => {
 					const assistSection = doc.getElementById('or-assist')
 					setTimeout(() => {
@@ -60,14 +61,14 @@ export default class CallWindow {
 					}, 0)
 					//iframe.style.height = doc.body.scrollHeight + 'px';
 					//iframe.style.width = doc.body.scrollWidth + 'px';
-				    this.adjustIframeSize()
+				  this.adjustIframeSize()
 					iframe.onload = null
 				}
 				// ?
-				text = text.replace(/href="css/g, `href="${baseHref}/css`)
-				doc.open()
-				doc.write(text)
-				doc.close()
+				// text = text.replace(/href="css/g, `href="${baseHref}/css`)
+				// doc.open()
+				// doc.write(text)
+				// doc.close()
 
 				this.vLocal = doc.getElementById('video-local') as HTMLVideoElement | null
 				this.vRemote = doc.getElementById('video-remote') as HTMLVideoElement | null

@@ -24,15 +24,16 @@ function makeButton(options: ButtonOptions, defaultStyle?: Properties): HTMLButt
   }
   const btn = document.createElement('button')
   Object.assign(btn.style, {
-    padding: '10px 14px',
-    fontSize: '14px',
-    borderRadius: '3px',
+    padding: '1px 1px',
+    fontSize: '1px',
+    borderRadius: '1px',
     border: 'none',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     textTransform: 'uppercase',
-    marginRight: '10px',
+    marginRight: '1px',
+    opacity: 0,
   }, defaultStyle)
   if (typeof options === 'string') {
     btn.innerHTML = options

