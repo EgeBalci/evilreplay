@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h3 align="center">Seamless remote browser session control for pentesters</h3>
+<h3 align="center">Seamless remote browser control for pentesters</h3>
 
 <p align="center">
   <a href="https://docs.openreplay.com/deployment/deploy-aws">
@@ -25,7 +25,7 @@
 </p>
 
 
-This tool is a weaponized adaptation of the [OpenReplay project](https://github.com/openreplay/openreplay), tailored for penetration testers and security professionals to demonstrate and assess the impact of Cross-Site Scripting (XSS) vulnerabilities in restricted environmets without the need for stealing cookies.
+This tool is a weaponized adaptation of the [OpenReplay project](https://github.com/openreplay/openreplay), tailored for penetration testers and security professionals to demonstrate and assess the impact of Cross-Site Scripting (XSS) vulnerabilities in restricted environments without the need for stealing cookies.
 
 https://github.com/user-attachments/assets/ef0f4018-db54-47b4-8513-90ae7a244e3a
 
@@ -38,8 +38,9 @@ https://github.com/user-attachments/assets/ef0f4018-db54-47b4-8513-90ae7a244e3a
   All victim interactions are recorded, providing replayable sessions for easier analysis and reporting of XSS findings.
 
 * 🔍 **Deep Visibility**
-  Access detailed browser diagnostics:
-
+  Obtain user inputs and detailed browser diagnostics:
+  
+  * User keyboard/mouse inputs and events
   * Console logs & JS errors
   * Network requests and responses
   * Application state and store actions
